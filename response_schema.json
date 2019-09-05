@@ -1,0 +1,106 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "required": [
+        "status_code",
+        "message",
+        "result"
+    ],
+    "properties": {
+        "status_code": {
+            "type": "integer",
+            "enum": [
+                200,
+                400,
+                404
+            ]
+        },
+        "message": {
+            "type": "object",
+            "required": [
+                "code",
+                "message",
+                "details"
+            ],
+            "properties": {
+                "code": {
+                    "type": "string",
+                    "enum": [
+                        "",
+                        "I152000",
+                        "E152001",
+                        "E152002"
+                    ]
+                },
+                "message": {
+                    "type": "string"
+                },
+                "details": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "required": [
+                            "key",
+                            "value",
+                            "message"
+                        ],
+                        "properties": {
+                            "key": {
+                                "type": "string"
+                            },
+                            "value": {
+                                "type": [
+                                    "string",
+                                    "integer"
+                                ]
+                            },
+                            "message": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "result": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "required": [
+                            "promotion_no"
+                        ],
+                        "properties": {
+                            "promotion_no": {
+                                "type": "integer",
+                                "minimun": 1,
+                                "maximum": 9999999999
+                            },
+                            "category_no": {
+                                "type": "integer"
+                            },
+                            "send_time": {
+                                "type": "string",
+                                "pattern": "[0-9]{4}-((02-(0[1-9]|[12][0-9]))|(0[469]|11)-([0][1-9]|[12][0-9]|30)|(0[13578]|1[02])-([0][1-9]|[12][0-9]|3[01])) ([0-1][0-9]|2[0-3])(:[0-5][0-9]){2}"
+                            },
+                            "subject": {
+                                "type": "string"
+                            },
+                            "method": {
+                                "type": "integer",
+                                "enum": [
+                                    0,
+                                    1,
+                                    2,
+                                    3,
+                                    4,
+                                    5,
+                                    6,
+                                    8,
+                                    9
+                                ]
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
